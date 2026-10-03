@@ -10,6 +10,12 @@ Measured on RTX 5090:
 | **Base + precomputed voice** (clone) | 0.6B-Base | **59 ms** | — |
 | Transformers-native (sibling bench) | 1.7B-Base | 2300 ms | 25× slower, no pipelining |
 
+**Want to hear the samples without installing anything?** Open [`showcase/`](showcase/) — three subdirectories with ready-to-play 24 kHz WAVs:
+
+- [`showcase/customvoice_native/`](showcase/customvoice_native/) — one sample per CustomVoice speaker in their native language
+- [`showcase/customvoice_english/`](showcase/customvoice_english/) — the same English prompt through all 9 CustomVoice speakers (mix of M & F, native English + cross-language)
+- [`showcase/clone/`](showcase/clone/) — three utterances per voice from the voice-clone bench, five voices (Qwen's reference + four OpenAI-sourced clones)
+
 The gap between the vLLM-Omni path (sub-100 ms) and the transformers-native path (seconds) is the inference architecture: vLLM-Omni runs a two-stage Talker→Code2Wav pipeline through a shared-memory connector, so the first PCM chunk ships while the Talker is still generating later tokens. Transformers waits for the whole utterance.
 
 If you came for the audio samples, jump to [Listening to the output](#listening-to-the-output).
