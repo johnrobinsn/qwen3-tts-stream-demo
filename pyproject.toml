@@ -1,0 +1,37 @@
+[project]
+name = "qwen3-tts-stream-demo"
+version = "0.1.0"
+description = "Streaming/pipelined Qwen3-TTS demo targeting the upstream 97ms TTFA claim via vLLM-Omni's single-stage fused Talker + in-Talker streaming codec decoder."
+readme = "README.md"
+# vllm-omni documents Python 3.12 as the supported interpreter. vllm 0.30 and
+# the fa3-fwd / flashinfer / cutlass-dsl stacks are only tested on 3.12.
+requires-python = ">=3.12,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "John Robinson" }]
+
+# torch 2.13.0 / torchaudio 2.11.0 are hard pins from vllm 0.30's cuda.txt.
+# cu130 wheels are required: vllm pulls flashinfer-python, cutlass-dsl[cu13],
+# humming-kernels[cu13], quack-kernels — all CUDA 13. Driver 595.84 on this
+# host advertises CUDA 13.2, so cu130 is the right choice.
+#
+# flash-attn 2.8.3 is NOT installed here. vllm bundles its own attention
+# kernels (flashinfer + FA4-via-cutlass) and vllm-omni uses fa3-fwd for the
+# Talker. The transformers-path flash-attn is unused.
+dependencies = [
+    "vllm==0.30.0",
+    "vllm-omni==0.30.0",
+    "soundfile>=0.13.1",
+    "numpy>=1.26",
+    # Streaming playback for repl.py (PortAudio bindings).
+    "sounddevice>=0.5",
+    # OpenAI SDK — only used by generate_reference_voices.py to synthesize
+    # the voice-clone reference clips. Not needed at inference time.
+    "openai>=1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["qwen3_tts_stream_demo"]

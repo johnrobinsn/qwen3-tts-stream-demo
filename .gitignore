@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# uv-managed virtual environment (recreated via `uv venv` + install steps)
+.venv/
+
+# Script output locations. These are what the scripts write to by
+# default. Committed reference samples live under `showcase/` instead
+# so that re-running the scripts does not clobber the ones we captured.
+output_audio/
+samples/
+samples_english/
+samples_clone/
+
+# Blog draft — kept local only.
+BLOG.md
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Secrets — guardrail only. The scripts never write keys to disk, but if
+# a future contributor adds a .env it won't accidentally land in git.
+.env
+.env.local

@@ -1,0 +1,5 @@
+# name	openai_voice	gender
+oai_echo	echo	male
+oai_onyx	onyx	male
+oai_nova	nova	female
+oai_shimmer	shimmer	female

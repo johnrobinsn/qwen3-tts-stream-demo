@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "model_type": "qwen3_tts",
+  "model": "Qwen/Qwen3-TTS-12Hz-0.6B-Base",
+  "hidden_size": 1024,
+  "voices": {
+    "qwen_sample_m": {
+      "name": "qwen_sample_m",
+      "file": "qwen_sample_m.safetensors",
+      "mode": "icl",
+      "embedding_dim": 1024,
+      "ref_code_length": 101,
+      "ref_text": "Okay. Yeah. I resent you. I love you. I respect you. But you know what? You blew it! And thanks to you."
+    },
+    "oai_echo": {
+      "name": "oai_echo",
+      "file": "oai_echo.safetensors",
+      "mode": "icl",
+      "embedding_dim": 1024,
+      "ref_code_length": 84,
+      "ref_text": "Hi, I'm Echo. My voice is clear and even, suited for narration and tutorials."
+    },
+    "oai_nova": {
+      "name": "oai_nova",
+      "file": "oai_nova.safetensors",
+      "mode": "icl",
+      "embedding_dim": 1024,
+      "ref_code_length": 81,
+      "ref_text": "Hi, I'm Nova. My voice is warm and energetic, great for conversational assistants."
+    },
+    "oai_onyx": {
+      "name": "oai_onyx",
+      "file": "oai_onyx.safetensors",
+      "mode": "icl",
+      "embedding_dim": 1024,
+      "ref_code_length": 66,
+      "ref_text": "Hello there. I'm Onyx, with a deeper and more resonant tone that carries authority."
+    },
+    "oai_shimmer": {
+      "name": "oai_shimmer",
+      "file": "oai_shimmer.safetensors",
+      "mode": "icl",
+      "embedding_dim": 1024,
+      "ref_code_length": 82,
+      "ref_text": "Hello. I'm Shimmer, with a soft and friendly tone that's easy to listen to for long sessions."
+    }
+  }
+}

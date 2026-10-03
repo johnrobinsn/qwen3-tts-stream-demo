@@ -1,0 +1,29 @@
+# Qwen3-TTS Base deploy profile with preloaded custom voice profiles.
+#
+# Inherits the two-stage mrv2 streaming profile (Talker -> Code2Wav via SHM
+# connector, talker_first_audio=true) and only adds the `custom_voice_dir`
+# override on the Talker. All precomputed voices under that directory are
+# loaded into the engine's SpeakerEmbeddingCache at startup; per-request
+# cost is a hash-table lookup — no codec encoding on the hot path.
+#
+# NOTE: base_config paths are resolved relative to this file's directory.
+# The absolute path below points at the vllm-omni wheel's shipped config.
+# If you move this file, re-run `realpath .venv/lib/python3.12/\
+# site-packages/vllm_omni/deploy/qwen3_tts_mrv2.yaml` to re-derive.
+base_config: /mntc/code/qwen3-tts-stream-demo/.venv/lib/python3.12/site-packages/vllm_omni/deploy/qwen3_tts_mrv2.yaml
+
+stages:
+  - stage_id: 0
+    # Resolved relative to the working directory where the demo is launched.
+    custom_voice_dir: voices
+    # Override the Talker's temperature from the shipped qwen3_tts.yaml
+    # default of 0.9. Lower temperature → more consistent prosody and
+    # duration across runs of the same prompt, at the cost of some
+    # expressive variation. All other sampling fields are repeated here
+    # verbatim since OmegaConf replaces (not merges) nested dicts.
+    default_sampling_params:
+      temperature: 0.5
+      top_k: 50
+      max_tokens: 4096
+      min_tokens: 2
+      repetition_penalty: 1.05
