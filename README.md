@@ -20,8 +20,7 @@ The gap between the vLLM-Omni path (sub-100 ms) and the transformers-native path
 
 If you came for the audio samples, jump to [Listening to the output](#listening-to-the-output).
 
-**→ Companion write-up (coming soon):** [storminthecastle.com/posts/qwen3-tts-streaming/](https://www.storminthecastle.com/posts/qwen_tts_streaming/)
-
+**→ Companion write-up (coming soon):** [storminthecastle.com/posts/qwen_tts_latency/](https://www.storminthecastle.com/posts/qwen_tts_latency/)
 ## Prerequisites
 
 | Component | Required | Notes |
